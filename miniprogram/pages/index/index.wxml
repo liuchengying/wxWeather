@@ -1,0 +1,88 @@
+<!-- index.wxml -->
+<view class="container" style='background-image: url({{bgImgUrl}})'>
+  <scroll-view class="scroll-view_y" scroll-y='true' style="height:100%;overflow:hidden">
+    <view>
+      <view class='location' bind:tap="chooseLocation">
+        <myicon class="icon" type="dingwei"></myicon>
+        <text class='city'>{{position}}</text>
+      </view>
+      <view class="center-container">
+        <view class="flex-content-left">
+          <view class="pm-number-view">
+            <text style="display:inline-block;width: 4rpx;border:4rpx solid {{airQuality.color}};height: 22rpx;margin-right:12rpx;box-sizing:border-box"></text>
+            <text style="line-height: 60rpx;font-size:26rpx;color:white">{{airQuality.airText}} {{airQuality.aqi}}</text>
+          </view>
+          <view class="today-weather-view">
+            <text style="text-align:center;font-size:32rpx;color:white;">
+              今 天
+            </text>
+            <text style="text-align:center;font-size:32rpx;color:white;margin-bottom:32rpx">
+              {{todayData.dateTxt}}
+            </text>
+            <view style="text-align:center;color:white">
+              <myicon class="icon" style="color: white; font-size:32rpx" type="xiaoyu"></myicon>
+              <text>{{todayData.tmp_min}}/{{todayData.tmp_max}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="flex-content-center">
+          <view class="temp-out-content">
+            <text class="today-temp">{{liveWeather.fl}}</text>
+            <text class="temp-symbol">℃</text>
+          </view>
+          <text class="today-temp-bottom">{{liveWeather.cond_txt}}</text>
+          <view class="temp-out-content__bottom">
+            <view class="flex-center__left">
+              <text class="home-text ">湿度: {{liveWeather.hum}}%</text>
+              <text class="home-text">风力：{{liveWeather.wind_sc}}级</text>
+            </view>
+            <view class="flex-center__right">
+              <text class="home-text">天气变凉注意添加衣物</text>
+            </view>
+          </view>
+        </view>
+        <view class="flex-content-right">
+          <view class="today-weather-view">
+            <text style="text-align:center;font-size:32rpx;color:white;margin-bottom:6rpx">
+              明 天
+            </text>
+            <text style="text-align:center;font-size:32rpx;color:white;margin-bottom:32rpx">
+              {{tomorrowData.dateTxt}}
+            </text>
+            <view style="text-align:center;color:white">
+              <myicon class="icon" style="color: white;font-size:32rpx" type="duoyunbai"></myicon>
+              <text>{{tomorrowData.tmp_min}}/{{tomorrowData.tmp_max}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="all-day-list">
+        <scroll-view class="scroll-view_x" scroll-x style="overflow:hidden;width:auto;height:100%">
+          <view class="all-day-list-item" wx:for="{{everyHourData}}">
+            <view class="day-list-item">{{item.time}}点</view>
+            <view class="day-list-item">{{item.cond}}</view>
+            <view class="day-list-item">{{item.tmp}}°</view>
+          </view>
+        </scroll-view>
+      </view>
+      <view class="one-week-list">
+        <view class="one-week-list-item" wx:for="{{everyWeekData}}">
+          <view class="week-list-item" style="font-size: 28rpx">
+            <view>{{item.weekday}}</view>
+            <view>{{item.date}}</view>
+          </view>
+          <view class="week-list-item">{{item.cond_txt_d}}</view>
+          <view class="week-list-item"><myicon style="color:white;font-size:44rpx" type="duoyunbai"></myicon></view>
+          <view class="week-list-item">{{item.tmp_min}}~{{item.tmp_max}}°</view>
+          <view class="week-list-item"><myicon style="color:white;font-size:44rpx" type="xiaoyu"></myicon></view>
+          <view class="week-list-item">{{item.cond_txt_n}}</view>
+          <view class="week-list-item" style="font-size: 28rpx">
+            <view>{{item.wind_dir == '无持续风向' ? '无' : item.wind_dir}}</view>
+            <view>{{item.wind_sc}}级</view>
+          </view>
+        </view>
+        
+      </view>
+    </view>
+  </scroll-view>
+</view>

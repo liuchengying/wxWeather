@@ -1,0 +1,6 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "myicon": "../../components/icon/index"
+  }
+}

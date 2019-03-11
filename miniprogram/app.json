@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTextStyle": "black",
+    "navigationStyle":"custom"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "小程序尝试获取您的位置信息"
+    }
+  }
+}
