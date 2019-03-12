@@ -119,7 +119,7 @@ page {
   padding-left:30rpx;
   padding-right: 20rpx;
   text-align: center;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(1, 2, 3, 0.2);
   border-radius: 30rpx;
   transform: translate(-20rpx, 0rpx);
 }
@@ -128,7 +128,7 @@ page {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin-top: 210rpx;
+  margin-top: 270rpx;
   justify-items: center;
 }
 
