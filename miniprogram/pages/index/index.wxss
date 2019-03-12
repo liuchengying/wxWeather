@@ -4,10 +4,9 @@ page {
   background: #f6f6f6;
   width: 100%;
   height: 100%;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: flex-start; */
+  /* display: flex; *//* flex-direction: column; *//* justify-content: flex-start; */
 }
+
 .location {
   margin-top: 90rpx;
   width: 100%;
@@ -20,21 +19,21 @@ page {
 }
 
 .city, .icon {
-  color: rgba(236, 240, 241,1.0);
+  color: rgba(236, 240, 241, 1.0);
   display: inline-block;
   vertical-align: top;
 }
 
 .city {
   max-width: 60%;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .center-container {
   display: flex;
-  margin-top: 160rpx;
+  margin-top: 100rpx;
   justify-content: center;
   flex-direction: row;
   height: 500rpx;
@@ -50,8 +49,6 @@ page {
   /* background: red; */
 }
 
-
-
 .flex-content-center {
   /* flex: 3; */
   height: 100%;
@@ -62,21 +59,24 @@ page {
 }
 
 .temp-out-content {
-  margin-top: 50rpx;
+  margin-top: 0rpx;
+  padding-left: 30rpx;
 }
 
 .today-temp {
   display: inline-block;
-  font-size: 160rpx;
+  font-size: 200rpx;
   color: white;
   vertical-align: top;
   padding: 0;
 }
+
 .today-temp-bottom {
   text-align: center;
   font-size: 36rpx;
   color: #f5f6fa;
-} 
+}
+
 .temp-symbol {
   display: inline-block;
   font-size: 36rpx;
@@ -93,30 +93,32 @@ page {
   height: 170rpx;
 }
 
-.flex-center__left,.flex-center__right {
+.flex-center__left, .flex-center__right {
   height: 50%;
-  
 }
 
 .flex-center__left {
   /* background: green; */
   display: flex;
 }
+
 .flex-center__right {
   /* background: greenyellow; */
 }
+
 .home-text {
   font-size: 32rpx;
   line-height: 85rpx;
   flex: 1;
   color: white;
 }
+
 .pm-number-view {
   position: absolute;
   left: 0;
   top: 200rpx;
   height: 60rpx;
-  padding-left:30rpx;
+  padding-left: 30rpx;
   padding-right: 20rpx;
   text-align: center;
   background: rgba(1, 2, 3, 0.2);
@@ -128,7 +130,7 @@ page {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin-top: 270rpx;
+  margin-top: 295rpx;
   justify-items: center;
 }
 
@@ -137,13 +139,14 @@ page {
   width: 100%;
   height: 220rpx;
   background: rgba(1, 2, 3, 0.3);
-  padding:10rpx 0rpx;
+  padding: 10rpx 0rpx;
   overflow: hidden;
-  white-space:nowrap;
+  white-space: nowrap;
   color: white;
   font-size: 32rpx;
   box-sizing: border-box;
 }
+
 .all-day-list-item {
   width: 100rpx;
   height: 100%;
@@ -151,23 +154,26 @@ page {
   text-align: center;
   vertical-align: top;
 }
+
 .day-list-item {
   width: 100%;
   height: 33.33%;
   margin-top: 6rpx;
 }
+
 .one-week-list {
   width: 100%;
   box-sizing: border-box;
   height: 880rpx;
   background: rgba(1, 2, 3, 0.3);
-  margin-top:30rpx;
+  margin-top: 30rpx;
   display: flex;
   flex-direction: row;
   justify-content: center;
   color: white;
   font-size: 30rpx;
 }
+
 .one-week-list-item {
   flex: 1;
   height: 100%;
@@ -179,10 +185,77 @@ page {
   justify-content: center;
   vertical-align: middle;
 }
+
 .week-list-item {
   flex: 1;
   box-sizing: border-box;
   width: 100%;
   vertical-align: middle;
   padding-top: 26rpx;
+}
+
+.live-index-view {
+  width: 100%;
+  height: 480rpx;
+  margin-top: 30rpx;
+  box-sizing: border-box;
+  color: white;
+  background: rgba(1, 2, 3, 0.2);
+}
+
+.live-index-item {
+  width: 100%;
+  height: 118rpx;
+  border-top: 2rpx solid grey;
+}
+.live-index-item:nth-last-child(1) {
+  border-bottom: 2rpx solid grey;
+}
+.live-index-item-left {
+  box-sizing: border-box;
+  width: 50%;
+  height: 100%;
+  display: inline-block;
+}
+
+.live-index-item-right {
+  box-sizing: border-box;
+  width: 50%;
+  height: 100%;
+  display: inline-block;
+}
+
+.live-index-top-txt {
+  box-sizing: border-box;
+  width: 100%;
+  height: 50rpx;
+  padding-left: 30rpx;
+  font-size: 28rpx;
+  line-height: 50rpx;
+}
+
+.live-index-bottom-txt {
+  box-sizing: border-box;
+  width: 100%;
+  height: 68rpx;
+  padding-left: 30rpx;
+  font-size: 60rpx;
+  line-height: 68rpx;
+  
+}
+.last-view {
+  margin-top: 30rpx;
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(1, 2, 3, 0.2);
+  color: white;
+}
+
+.last-view-item {
+  width: 25%;
+  height: 25vw;
+  /* background: red; */
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
 }

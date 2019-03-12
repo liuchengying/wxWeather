@@ -2,7 +2,7 @@
 <view class="container" style='background-image: url({{bgImgUrl}})'>
   <scroll-view class="scroll-view_y" scroll-y='true' style="height:100%;overflow:hidden">
     <view>
-      <view class='animation-view' style='background: rgba(1,2,3,0.5);padding: 0;margin:0'>
+      <view class='animation-view'>
         <view class='location' bind:tap="chooseLocation">
           <myicon class="icon" type="dingwei"></myicon>
           <text class='city'>{{position}}</text>
@@ -22,7 +22,7 @@
             </text>
               <view style="text-align:center;color:white">
                 <myicon class="icon" style="color: white; font-size:32rpx" type="xiaoyu"></myicon>
-                <text>{{todayData.tmp_min}}/{{todayData.tmp_max}}</text>
+                <text style='font-size:32rpx'>{{todayData.tmp_min}}/{{todayData.tmp_max}}</text>
               </view>
             </view>
           </view>
@@ -52,7 +52,7 @@
             </text>
               <view style="text-align:center;color:white">
                 <myicon class="icon" style="color: white;font-size:32rpx" type="duoyunbai"></myicon>
-                <text>{{tomorrowData.tmp_min}}/{{tomorrowData.tmp_max}}</text>
+                <text style='font-size:32rpx'>{{tomorrowData.tmp_min}}/{{tomorrowData.tmp_max}}</text>
               </view>
             </view>
           </view>
@@ -89,6 +89,60 @@
           </view>
         </view>
 
+      </view>
+
+      <view class='live-index-view'>
+        <view class='live-index-item'>
+          <view class='live-index-item-left'>
+            <view class='live-index-top-txt'><text>日出</text></view>
+            <view class='live-index-bottom-txt'><text>{{todayData.sr}}</text></view>
+          </view>
+          <view class='live-index-item-right'>
+            <view class='live-index-top-txt'><text>日落</text></view>
+            <view class='live-index-bottom-txt'><text>{{todayData.ss}}</text></view>
+          </view>
+        </view>
+        <view class='live-index-item'>
+          <view class='live-index-item-left'>
+            <view class='live-index-top-txt'><text>降雨概率</text></view>
+            <view class='live-index-bottom-txt'><text>{{todayData.pop}}</text></view>
+          </view>
+          <view class='live-index-item-right'>
+            <view class='live-index-top-txt'><text>风向角度</text></view>
+            <view class='live-index-bottom-txt'><text>{{todayData.wind_deg}}°</text></view>
+          </view>
+        </view>
+        <view class='live-index-item'>
+          <view class='live-index-item-left'>
+            <view class='live-index-top-txt'><text>风速</text></view>
+            <view class='live-index-bottom-txt'><text>{{todayData.wind_spd}} <text style='font-size: 28rpx'>公里/小时</text></text></view>
+          </view>
+          <view class='live-index-item-right'>
+            <view class='live-index-top-txt'><text>能见度</text></view>
+            <view class='live-index-bottom-txt'><text>{{todayData.vis}} <text style='font-size: 28rpx'>公里</text></text></view>
+          </view>
+        </view>
+        <view class='live-index-item'>
+          <view class='live-index-item-left'>
+            <view class='live-index-top-txt'><text>月声时间</text></view>
+            <view class='live-index-bottom-txt'><text>{{todayData.mr}}</text></view>
+          </view>
+          <view class='live-index-item-right'>
+            <view class='live-index-top-txt'><text>月落时间</text></view>
+            <view class='live-index-bottom-txt'><text>{{todayData.ms}}</text></view>
+          </view>
+        </view>
+      </view>
+
+      <view class='last-view'>
+        <view class='last-view-item'>1</view>
+        <view class='last-view-item'>1</view>
+        <view class='last-view-item'>1</view>
+        <view class='last-view-item'>1</view>
+        <view class='last-view-item'>1</view>
+        <view class='last-view-item'>1</view>
+        <view class='last-view-item'>1</view>
+        <view class='last-view-item'>1</view>
       </view>
     </view>
   </scroll-view>
