@@ -2,7 +2,7 @@
 <view class="container" style='background-image: url({{bgImgUrl}})'>
   <scroll-view class="scroll-view_y" scroll-y='true' style="height:100%;overflow:hidden">
     <view>
-      <view class='animation-view' >
+      <view class='animation-view' style='background: rgba(1,2,3,0.5);padding: 0;margin:0'>
         <view class='location' bind:tap="chooseLocation">
           <myicon class="icon" type="dingwei"></myicon>
           <text class='city'>{{position}}</text>
