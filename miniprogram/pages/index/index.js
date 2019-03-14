@@ -1,7 +1,20 @@
 //index.js
 const app = getApp()
-import { getPosition, getWeaterInfo, getEveryHoursWeather, getWeekWeather, getAirQuality, getWeatherLive } from '../../uitl/api'
-import { weekEnum as weekday, airQuailtyLevel, arrForAirColor } from '../../uitl/utils'
+import {
+  getPosition,
+  getWeaterInfo,
+  getEveryHoursWeather,
+  getWeekWeather,
+  getAirQuality,
+  getWeatherLive,
+  getLifeStyle
+} from '../../uitl/api'
+import {
+  weekEnum as weekday,
+  airQuailtyLevel,
+  arrForAirColor,
+  lifeIndexEnum
+} from '../../uitl/utils'
 
 Page({
   data: {
@@ -17,10 +30,13 @@ Page({
     everyHourData: [],
     everyWeekData: [],
     airQuality: {},
-    liveWeather: {}
+    liveWeather: {},
+    lifeStyle: [],
+    lifeEnum: lifeIndexEnum,
+    warmPrompt: ''
   },
 
-  onLoad: function () {
+  onLoad: function() {
     wx.getLocation({
       type: 'gcj02',
       success: this.updateLocation,
@@ -29,19 +45,51 @@ Page({
       }
     })
   },
-
-  updateLocation: function (res) {
-    let { latitude: x, longitude: y, name } = res;
-    let data = { location: { x, y, name: name || '北京市' } };
+  getData: function(lat, lon) {
+    wx.showLoading({
+      title: '加载中',
+    })
+    Promise.all([this.getWeather(lat, lon), this.getAir(lat, lon), this.getHourWeather(lat, lon), this.getWeatherForWeek(lat, lon), this.getLifeIndex(lat, lon)]).then(res => {
+      wx.hideLoading();
+    })
+    // this.getWeather(lat, lon)
+    // this.getAir(lat, lon)
+    // this.getHourWeather(lat, lon)
+    // this.getWeatherForWeek(lat, lon)
+    // this.getLifeIndex(lat, lon)
+  },
+  updateLocation: function(res) {
+    wx.showModal({
+      title: 'aa',
+      content: 'bb',
+    })
+    let {
+      latitude: x,
+      longitude: y,
+      name
+    } = res;
+    let data = {
+      location: {
+        x,
+        y,
+        name: name || '北京市'
+      }
+    };
     this.setData(data);
     this.getLocation(x, y, name);
   },
 
-  chooseLocation: function () {
+  chooseLocation: function() {
     wx.chooseLocation({
       success: res => {
-        let { latitude, longitude } = res
-        let { x, y } = this.data.location
+        let {
+          latitude,
+          longitude
+        } = res
+        let {
+          x,
+          y
+        } = this.data.location
         if (latitude == x && longitude == y) {
 
         } else {
@@ -51,7 +99,7 @@ Page({
     })
   },
 
-  getLocation: function (lat, lon, name) {
+  getLocation: function(lat, lon, name) {
     wx.showLoading({
       title: "定位中",
       mask: true
@@ -64,10 +112,7 @@ Page({
           position: addr
         })
         wx.hideLoading()
-        this.getWeather(lat, lon)
-        this.getAir(lat, lon)
-        this.getHourWeather(lat, lon)
-        this.getWeatherForWeek(lat, lon)
+        this.getData(lat, lon);
       }
     }, (err => {
       console.log(err)
@@ -75,7 +120,7 @@ Page({
     }))
   },
 
-  getWeather: function (lat, lon) {
+  getWeather: function(lat, lon) {
     if (!lat || !lon) {
       return
     }
@@ -87,12 +132,11 @@ Page({
       console.log(err);
     })
   },
-  getHourWeather: function (lat, lon) {
+  getHourWeather: function(lat, lon) {
     if (!lat || !lon) {
       return
     }
     getEveryHoursWeather(lat, lon, res => {
-      console.log(res)
       let data = res.data.HeWeather6[0].hourly;
       let arrData = [];
       data.forEach(item => {
@@ -108,12 +152,14 @@ Page({
         d.tmp = item.tmp;
         arrData.push(d);
       });
-      this.setData({ everyHourData: arrData });
+      this.setData({
+        everyHourData: arrData
+      });
     }, err => {
       console.log(err)
     })
   },
-  getWeatherForWeek: function (lat, lon) {
+  getWeatherForWeek: function(lat, lon) {
     if (!lat || !lon) {
       return
     }
@@ -139,7 +185,7 @@ Page({
 
     })
   },
-  getAir: function (lat, lon) {
+  getAir: function(lat, lon) {
     if (!lat || !lon) {
       return
     }
@@ -147,8 +193,8 @@ Page({
       let data = res.data.HeWeather6[0].air_now_city
       let value = data.aqi
       let keys = Object.keys(airQuailtyLevel)
-      for(let i = 0;i < keys.length; i++) {
-        if(Number(value) <= Number(keys[i])) {
+      for (let i = 0; i < keys.length; i++) {
+        if (Number(value) <= Number(keys[i])) {
           data.color = arrForAirColor[i];
           data.airText = airQuailtyLevel[keys[i]];
           break;
@@ -159,6 +205,27 @@ Page({
       })
     }, err => {
       console.log(err)
+    })
+  },
+  getLifeIndex: function(lat, lon) {
+    if (!lat || !lon) {
+      return
+    }
+    getLifeStyle(lat, lon, res => {
+      let data = [];
+      let result = res.data.HeWeather6[0].lifestyle
+      let keys = Object.keys(lifeIndexEnum)
+      keys.forEach(item => {
+        data.push(result.filter(v => {
+          return v.type == item;
+        })[0])
+      })
+      this.setData({
+        lifeStyle: data,
+        warmPrompt: data[0].txt
+      })
+    }, err => {
+
     })
   }
 })

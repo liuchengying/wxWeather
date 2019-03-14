@@ -4,7 +4,7 @@ page {
   background: #f6f6f6;
   width: 100%;
   height: 100%;
-  /* display: flex; *//* flex-direction: column; *//* justify-content: flex-start; */
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
 }
 
 .location {
@@ -42,15 +42,12 @@ page {
 }
 
 .flex-content-left, .flex-content-right {
-  /* flex: 1; */
   height: 100%;
   width: 25%;
   width: 200rpx;
-  /* background: red; */
 }
 
 .flex-content-center {
-  /* flex: 3; */
   height: 100%;
   width: 50%;
   text-align: center;
@@ -111,6 +108,18 @@ page {
   line-height: 85rpx;
   flex: 1;
   color: white;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.out-scroll-text {
+  margin: 0 20rpx;
+}
+.scroll-text {
+  display: inline-block;
+  width: auto;
+  white-space: nowrap; 
+  animation: tipsScroll 8s linear infinite;
+  -webkit-animation: tipsScroll 8s linear infinite;
 }
 
 .pm-number-view {
@@ -130,7 +139,7 @@ page {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin-top: 295rpx;
+  margin-top: 265rpx;
   justify-items: center;
 }
 
@@ -206,11 +215,13 @@ page {
 .live-index-item {
   width: 100%;
   height: 118rpx;
-  border-top: 2rpx solid grey;
+  border-top: 1rpx solid #487eb0;
 }
+
 .live-index-item:nth-last-child(1) {
-  border-bottom: 2rpx solid grey;
+  border-bottom: 1rpx solid #487eb0;
 }
+
 .live-index-item-left {
   box-sizing: border-box;
   width: 50%;
@@ -241,8 +252,8 @@ page {
   padding-left: 30rpx;
   font-size: 60rpx;
   line-height: 68rpx;
-  
 }
+
 .last-view {
   margin-top: 30rpx;
   width: 100%;
@@ -258,4 +269,38 @@ page {
   display: inline-block;
   text-align: center;
   vertical-align: middle;
+}
+
+.last-view-item-top {
+  width: 100%;
+  height: 8vw;
+  line-height: 8vw;
+  margin-top: 4.5vw;
+  font-size: 24rpx;
+  color: #bdc3c7;
+}
+
+.last-view-item-bottom {
+  width: 100%;
+  height: 8vw;
+  line-height: 8vw;
+  font-size: 32rpx;
+}
+
+
+@keyframes tipsScroll {
+  0% {
+    transform: translate(10%);
+  }
+  100% {
+    transform: translate(-100%);
+  }
+}
+@-webkit-keyframes tipsScroll {
+  0% {
+    transform: translate(10%);
+  }
+  100% {
+    transform: translate(-100%);
+  }
 }

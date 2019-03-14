@@ -38,7 +38,10 @@
                 <text class="home-text">风力：{{liveWeather.wind_sc}}级</text>
               </view>
               <view class="flex-center__right">
-                <text class="home-text">天气变凉注意添加衣物</text>
+                <view class="home-text out-scroll-text">
+                  <text class='scroll-text'>{{warmPrompt}}</text>
+                </view>
+
               </view>
             </view>
           </view>
@@ -94,55 +97,83 @@
       <view class='live-index-view'>
         <view class='live-index-item'>
           <view class='live-index-item-left'>
-            <view class='live-index-top-txt'><text>日出</text></view>
-            <view class='live-index-bottom-txt'><text>{{todayData.sr}}</text></view>
+            <view class='live-index-top-txt'>
+              <text>日出</text>
+            </view>
+            <view class='live-index-bottom-txt'>
+              <text>{{todayData.sr}}</text>
+            </view>
           </view>
           <view class='live-index-item-right'>
-            <view class='live-index-top-txt'><text>日落</text></view>
-            <view class='live-index-bottom-txt'><text>{{todayData.ss}}</text></view>
+            <view class='live-index-top-txt'>
+              <text>日落</text>
+            </view>
+            <view class='live-index-bottom-txt'>
+              <text>{{todayData.ss}}</text>
+            </view>
           </view>
         </view>
         <view class='live-index-item'>
           <view class='live-index-item-left'>
-            <view class='live-index-top-txt'><text>降雨概率</text></view>
-            <view class='live-index-bottom-txt'><text>{{todayData.pop}}</text></view>
+            <view class='live-index-top-txt'>
+              <text>降雨概率</text>
+            </view>
+            <view class='live-index-bottom-txt'>
+              <text>{{todayData.pop}}</text>
+            </view>
           </view>
           <view class='live-index-item-right'>
-            <view class='live-index-top-txt'><text>风向角度</text></view>
-            <view class='live-index-bottom-txt'><text>{{todayData.wind_deg}}°</text></view>
+            <view class='live-index-top-txt'>
+              <text>风向角度</text>
+            </view>
+            <view class='live-index-bottom-txt'>
+              <text>{{todayData.wind_deg}}°</text>
+            </view>
           </view>
         </view>
         <view class='live-index-item'>
           <view class='live-index-item-left'>
-            <view class='live-index-top-txt'><text>风速</text></view>
-            <view class='live-index-bottom-txt'><text>{{todayData.wind_spd}} <text style='font-size: 28rpx'>公里/小时</text></text></view>
+            <view class='live-index-top-txt'>
+              <text>风速</text>
+            </view>
+            <view class='live-index-bottom-txt'>
+              <text>{{todayData.wind_spd}} <text style='font-size: 28rpx'>公里/小时</text></text>
+            </view>
           </view>
           <view class='live-index-item-right'>
-            <view class='live-index-top-txt'><text>能见度</text></view>
-            <view class='live-index-bottom-txt'><text>{{todayData.vis}} <text style='font-size: 28rpx'>公里</text></text></view>
+            <view class='live-index-top-txt'>
+              <text>能见度</text>
+            </view>
+            <view class='live-index-bottom-txt'>
+              <text>{{todayData.vis}} <text style='font-size: 28rpx'>公里</text></text>
+            </view>
           </view>
         </view>
         <view class='live-index-item'>
           <view class='live-index-item-left'>
-            <view class='live-index-top-txt'><text>月声时间</text></view>
-            <view class='live-index-bottom-txt'><text>{{todayData.mr}}</text></view>
+            <view class='live-index-top-txt'>
+              <text>月声时间</text>
+            </view>
+            <view class='live-index-bottom-txt'>
+              <text>{{todayData.mr}}</text>
+            </view>
           </view>
           <view class='live-index-item-right'>
-            <view class='live-index-top-txt'><text>月落时间</text></view>
-            <view class='live-index-bottom-txt'><text>{{todayData.ms}}</text></view>
+            <view class='live-index-top-txt'>
+              <text>月落时间</text>
+            </view>
+            <view class='live-index-bottom-txt'>
+              <text>{{todayData.ms}}</text>
+            </view>
           </view>
         </view>
       </view>
 
       <view class='last-view'>
-        <view class='last-view-item'>1</view>
-        <view class='last-view-item'>1</view>
-        <view class='last-view-item'>1</view>
-        <view class='last-view-item'>1</view>
-        <view class='last-view-item'>1</view>
-        <view class='last-view-item'>1</view>
-        <view class='last-view-item'>1</view>
-        <view class='last-view-item'>1</view>
+        <view class='last-view-item' wx:for="{{lifeStyle}}">
+          <view class='last-view-item-top'>{{lifeEnum[item.type]}}</view>
+          <view class='last-view-item-bottom'>{{item.brf}}</view>
+        </view>
       </view>
     </view>
   </scroll-view>
