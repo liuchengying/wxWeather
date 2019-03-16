@@ -1,6 +1,6 @@
 <!-- index.wxml -->
 <view class="container" style='background-image: url({{bgImgUrl}})'>
-  <scroll-view class="scroll-view_y" scroll-y='true' style="height:100%;overflow:hidden">
+  <!-- <scroll-view class="scroll-view_y" scroll-y='true' style="height:100%;overflow:hidden"> -->
     <view>
       <view class='animation-view'>
         <view class='location' bind:tap="chooseLocation">
@@ -63,7 +63,7 @@
         </view>
         <view class="all-day-list">
           <scroll-view class="scroll-view_x" scroll-x style="overflow:hidden;width:auto;height:100%">
-            <view class="all-day-list-item" wx:for="{{everyHourData}}">
+            <view class="all-day-list-item" wx:for="{{everyHourData}}" wx:key="item.time">
               <view class="day-list-item">{{item.time}}点</view>
               <view class="day-list-item">
                 <myicon style="color:white;font-size:36rpx" type="{{item.iconType}}"></myicon>
@@ -75,7 +75,7 @@
       </view>
 
       <view class="one-week-list">
-        <view class="one-week-list-item" wx:for="{{everyWeekData}}">
+        <view class="one-week-list-item" wx:for="{{everyWeekData}}" wx:key="item.weekday">
           <view class="week-list-item" style="font-size: 28rpx">
             <view>{{item.weekday}}</view>
             <view>{{item.date}}</view>
@@ -173,11 +173,11 @@
       </view>
 
       <view class='last-view'>
-        <view class='last-view-item' wx:for="{{lifeStyle}}">
+        <view class='last-view-item' wx:for="{{lifeStyle}}" wx:key="item.type">
           <view class='last-view-item-top'>{{lifeEnum[item.type]}}</view>
           <view class='last-view-item-bottom'>{{item.brf}}</view>
         </view>
       </view>
     </view>
-  </scroll-view>
+  <!-- </scroll-view> -->
 </view>

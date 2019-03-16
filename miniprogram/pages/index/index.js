@@ -39,6 +39,9 @@ Page({
   },
 
   onLoad: function() {
+    this.getPosition()
+  },
+  getPosition: function() {
     wx.getLocation({
       type: 'gcj02',
       success: this.updateLocation,
@@ -53,12 +56,8 @@ Page({
     })
     Promise.all([this.getWeather(lat, lon), this.getAir(lat, lon), this.getHourWeather(lat, lon), this.getWeatherForWeek(lat, lon), this.getLifeIndex(lat, lon)]).then(res => {
       wx.hideLoading();
+      wx.stopPullDownRefresh()
     })
-    // this.getWeather(lat, lon)
-    // this.getAir(lat, lon)
-    // this.getHourWeather(lat, lon)
-    // this.getWeatherForWeek(lat, lon)
-    // this.getLifeIndex(lat, lon)
   },
   updateLocation: function(res) {
     let {
@@ -229,5 +228,8 @@ Page({
     }, err => {
 
     })
+  },
+  onPullDownRefresh: function() {
+    this.getPosition()
   }
 })

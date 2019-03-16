@@ -3,10 +3,10 @@
     "pages/index/index"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
+    "backgroundColor": "#A7CAD3",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#A7CAD3",
+    "navigationBarTitleText": "蜗牛天气",
     "navigationBarTextStyle": "black",
     "navigationStyle":"custom"
   },
