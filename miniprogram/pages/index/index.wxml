@@ -21,7 +21,7 @@
               {{todayData.dateTxt}}
             </text>
               <view style="text-align:center;color:white">
-                <myicon class="icon" style="color: white; font-size:32rpx" type="xiaoyu"></myicon>
+                <myicon class="icon" style="color: white; font-size:32rpx" type="{{todayData.iconTypeBai}}"></myicon>
                 <text style='font-size:32rpx'>{{todayData.tmp_min}}/{{todayData.tmp_max}}</text>
               </view>
             </view>
@@ -31,6 +31,7 @@
               <text class="today-temp">{{liveWeather.fl}}</text>
               <text class="temp-symbol">℃</text>
             </view>
+            <myicon class="icon" type="{{liveWeather.iconType}}"></myicon>
             <text class="today-temp-bottom">{{liveWeather.cond_txt}}</text>
             <view class="temp-out-content__bottom">
               <view class="flex-center__left">
@@ -54,7 +55,7 @@
               {{tomorrowData.dateTxt}}
             </text>
               <view style="text-align:center;color:white">
-                <myicon class="icon" style="color: white;font-size:32rpx" type="duoyunbai"></myicon>
+                <myicon class="icon" style="color: white;font-size:32rpx" type="{{tomorrowData.iconTypeBai}}"></myicon>
                 <text style='font-size:32rpx'>{{tomorrowData.tmp_min}}/{{tomorrowData.tmp_max}}</text>
               </view>
             </view>
@@ -64,7 +65,9 @@
           <scroll-view class="scroll-view_x" scroll-x style="overflow:hidden;width:auto;height:100%">
             <view class="all-day-list-item" wx:for="{{everyHourData}}">
               <view class="day-list-item">{{item.time}}点</view>
-              <view class="day-list-item">{{item.cond}}</view>
+              <view class="day-list-item">
+                <myicon style="color:white;font-size:36rpx" type="{{item.iconType}}"></myicon>
+              </view>
               <view class="day-list-item">{{item.tmp}}°</view>
             </view>
           </scroll-view>
@@ -79,11 +82,11 @@
           </view>
           <view class="week-list-item">{{item.cond_txt_d}}</view>
           <view class="week-list-item">
-            <myicon style="color:white;font-size:44rpx" type="duoyunbai"></myicon>
+            <myicon style="color:white;font-size:44rpx" type="{{item.iconTypeBai}}"></myicon>
           </view>
           <view class="week-list-item">{{item.tmp_min}}~{{item.tmp_max}}°</view>
           <view class="week-list-item">
-            <myicon style="color:white;font-size:44rpx" type="xiaoyu"></myicon>
+            <myicon style="color:white;font-size:44rpx" type="{{item.iconTypeYe}}"></myicon>
           </view>
           <view class="week-list-item">{{item.cond_txt_n}}</view>
           <view class="week-list-item" style="font-size: 28rpx">

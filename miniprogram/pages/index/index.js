@@ -13,7 +13,8 @@ import {
   weekEnum as weekday,
   airQuailtyLevel,
   arrForAirColor,
-  lifeIndexEnum
+  lifeIndexEnum,
+  iconType
 } from '../../uitl/utils'
 
 Page({
@@ -33,6 +34,7 @@ Page({
     liveWeather: {},
     lifeStyle: [],
     lifeEnum: lifeIndexEnum,
+    iconTypeObj: iconType,
     warmPrompt: ''
   },
 
@@ -59,10 +61,6 @@ Page({
     // this.getLifeIndex(lat, lon)
   },
   updateLocation: function(res) {
-    wx.showModal({
-      title: 'aa',
-      content: 'bb',
-    })
     let {
       latitude: x,
       longitude: y,
@@ -125,8 +123,10 @@ Page({
       return
     }
     getWeatherLive(lat, lon, res => {
+      let data = res.data.HeWeather6[0].now;
+      data.iconType = this.data.iconTypeObj[data.cond_code]
       this.setData({
-        liveWeather: res.data.HeWeather6[0].now
+        liveWeather: data
       })
     }, err => {
       console.log(err);
@@ -148,7 +148,7 @@ Page({
             d.time = str.substring(1)
           }
         }
-        d.cond = item.cond_txt;
+        d.iconType = this.data.iconTypeObj[item.cond_code];
         d.tmp = item.tmp;
         arrData.push(d);
       });
@@ -172,6 +172,8 @@ Page({
         arr.shift()
         data[i].date = arr.join('/')
         data[i].dateTxt = `${arr[0]}月${arr[1]}日`
+        data[i].iconTypeBai = this.data.iconTypeObj[data[i].cond_code_d]
+        data[i].iconTypeYe = this.data.iconTypeObj[data[i].cond_code_n]
       }
       data[0].weekday = '今 天'
       data[1].weekday = '明 天'
