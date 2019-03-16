@@ -12,7 +12,7 @@
   },
   "permission": {
     "scope.userLocation": {
-      "desc": "小程序尝试获取您的位置信息"
+      "desc": "蜗牛天气尝试获取您的位置信息"
     }
   }
 }
