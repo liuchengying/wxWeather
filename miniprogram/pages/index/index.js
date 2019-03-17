@@ -231,5 +231,11 @@ Page({
   },
   onPullDownRefresh: function() {
     this.getPosition()
-  }
+  },
+  onShareAppMessage() {
+    return {
+      title: '我发现一个好玩的天气小程序，分享给你看看！',
+      path: '/pages/index/index'
+    }
+  },
 })
