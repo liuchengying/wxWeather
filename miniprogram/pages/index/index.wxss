@@ -16,6 +16,8 @@ page {
   text-align: left;
   padding-left: 40rpx;
   box-sizing: border-box;
+  position:relative;
+  z-index: 10000;
 }
 
 .city, .icon {

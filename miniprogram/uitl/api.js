@@ -18,7 +18,7 @@ const weatherLive = 'https://api.heweather.net/s6/weather/now'
 const lifeStyle = 'https://api.heweather.net/s6/weather/lifestyle'
 // 根据当前位置的坐标反得到当前位置的详细信息
 export const getPosition = (lat, lon, success = {}, fail = {}) => {
-  wx.request({
+  return wx.request({
     url: locationUrl,
     header: {
       'Content-Type': 'application/json'
@@ -35,7 +35,7 @@ export const getPosition = (lat, lon, success = {}, fail = {}) => {
 
 // 根据location得到天气信息
 export const getWeaterInfo = (lat, lon, success = {}, fail = {}) => {
-  wx.request({
+  return wx.request({
     url: weatherUrl,
     header: {
       'Content-Type': 'application/json'
@@ -54,7 +54,7 @@ export const getWeaterInfo = (lat, lon, success = {}, fail = {}) => {
 // 根据location信息得到24小逐小时天气情况
 
 export const getEveryHoursWeather = (lat, lon, success = {}, fail = {}) => {
-  wx.request({
+  return wx.request({
     url: everyhoursUrl,
     header: {
       'Content-Type': 'application/json'
@@ -72,7 +72,7 @@ export const getEveryHoursWeather = (lat, lon, success = {}, fail = {}) => {
 
 // 根据location信息得到一周内天气情况
 export const getWeekWeather = (lat, lon, success = {}, fail = {}) => {
-  wx.request({
+  return wx.request({
     url: everyWeekUrl,
     header: {
       'Content-Type': 'application/json'
@@ -90,7 +90,7 @@ export const getWeekWeather = (lat, lon, success = {}, fail = {}) => {
 
 // 空气质量
 export const getAirQuality = (lat, lon, success = {}, fail = {}) => {
-  wx.request({
+  return wx.request({
     url: airQualityUrl,
     header: {
       'Content-Type': 'application/json'
@@ -108,7 +108,7 @@ export const getAirQuality = (lat, lon, success = {}, fail = {}) => {
 
 // 实况天气
 export const getWeatherLive = (lat, lon, success = {}, fail = {}) => {
-  wx.request({
+  return wx.request({
     url: weatherLive,
     header: {
       'Content-Type': 'application/json'
@@ -127,7 +127,7 @@ export const getWeatherLive = (lat, lon, success = {}, fail = {}) => {
 // 生活指数
 
 export const getLifeStyle = (lat, lon, success = {}, fail = {}) => {
-  wx.request({
+  return wx.request({
     url: lifeStyle,
     header: {
       'Content-Type': 'application/json'

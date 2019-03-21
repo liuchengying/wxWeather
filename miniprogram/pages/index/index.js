@@ -14,9 +14,12 @@ import {
   airQuailtyLevel,
   arrForAirColor,
   lifeIndexEnum,
-  iconType
+  iconType,
+  rainType,
+  snowType
 } from '../../uitl/utils'
-
+import Rain from '../../class/Rain.js'
+import Snow from '../../class/Snow.js'
 Page({
   data: {
     bgImgUrl: 'https://7778-wx-lcy-001-7c4596-1258768646.tcb.qcloud.la/cloud.jpg?sign=c2ae35f4801b87899b6699469b943367&t=1552072527',
@@ -35,10 +38,27 @@ Page({
     lifeStyle: [],
     lifeEnum: lifeIndexEnum,
     iconTypeObj: iconType,
-    warmPrompt: ''
+    warmPrompt: '',
+    width: 0,
+    canvasHeight: 320,
+    scole: 0,
+    canvas_instance: null,
+    apl: 0,
+    rain_ins: null,
+    snow_ins: null
   },
 
   onLoad: function() {
+    wx.getSystemInfo({
+      success: (res) => {
+        this.setData({
+          width: res.windowWidth,
+          scole: res.windowWidth / 375,
+          canvas_instance: wx.createCanvasContext('animation')
+        })
+      },
+    })
+
     this.getPosition()
   },
   getPosition: function() {
@@ -60,6 +80,12 @@ Page({
     })
   },
   updateLocation: function(res) {
+    if(this.data.rain_ins) {
+      this.data.rain_ins.stop()
+    }
+    if (this.data.snow_ins) {
+      this.data.snow_ins.stop()
+    }
     let {
       latitude: x,
       longitude: y,
@@ -70,7 +96,9 @@ Page({
         x,
         y,
         name: name || '北京市'
-      }
+      },
+      rain_ins: null,
+      snow_ins: null
     };
     this.setData(data);
     this.getLocation(x, y, name);
@@ -124,9 +152,42 @@ Page({
     getWeatherLive(lat, lon, res => {
       let data = res.data.HeWeather6[0].now;
       data.iconType = this.data.iconTypeObj[data.cond_code]
+      let hour = new Date().getHours()
+      let apl = 0
+      if (hour < 18 && hour >= 6) {
+        apl = 0
+      } else {
+        apl = 0.6
+      }
       this.setData({
-        liveWeather: data
+        liveWeather: data,
+        apl: apl
       })
+      let canvas_count = 0
+      let {
+        width,
+        canvasHeight,
+        scole
+      } = this.data
+      if (data.cond_code >= 300 && data.cond_code < 400) {
+        canvas_count = rainType[data.cond_code]
+        this.setData({
+          rain_ins: new Rain(this.data.canvas_instance, width, canvasHeight * scole, {
+            counts: canvas_count,
+            speedCoefficient: 0.03
+          })
+        })
+        this.data.rain_ins.start()
+      } else if (data.cond_code >= 400 && data.cond_code < 500) {
+        canvas_count = rainType[data.cond_code]
+        this.setData({
+          snow_ins: new Snow(this.data.canvas_instance, width, canvasHeight * scole, {
+            counts: canvas_count,
+            speedCoefficient: 0.03
+          })
+        })
+        this.data.snow_ins.start()
+      }
     }, err => {
       console.log(err);
     })
