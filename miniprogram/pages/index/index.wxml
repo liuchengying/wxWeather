@@ -1,9 +1,7 @@
 <!-- index.wxml -->
 <view class="container" style='background: url({{bgImgUrl}}) center -200rpx / 100% no-repeat #62aadc;'>
-  <!-- <scroll-view class="scroll-view_y" scroll-y='true' style="height:100%;overflow:hidden"> -->
     <view style='margin-top: -150rpx; padding-top: 150rpx;background: rgba(52,73,94, {{apl}})'>
       <view class='animation-view'>
-      
         <view class='location' bind:tap="chooseLocation">
           <myicon class="icon" type="dingwei"></myicon>
           <text class='city'>{{position}}</text>

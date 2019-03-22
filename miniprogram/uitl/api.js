@@ -1,5 +1,4 @@
 import config from '../uitl/config'
-// const request = require('request')
 const mapKey = config.MAP_API_KEY
 const weatherKey = config.WEATHER_API_KEY
 // map url
